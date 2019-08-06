@@ -44,21 +44,28 @@ export class HomePage {
     C: "ถูกเพิกถอนใบอนุญาต"
   };
 
+  onLoading = false;
+  isScanned = false;
+
   startScan() {
+    this.isScanned = false;
     this.barcodeScanner
       .scan()
       .then(barcodeData => {
         // console.log(barcodeData);
         this.getData(barcodeData.text);
         console.log(this.data);
+        this.isScanned = true;
         // this.startScan();
       })
       .catch(err => {
+        this.isScanned = true;
         console.log("Error", err);
       });
   }
 
   getData(id) {
+    this.onLoading = true;
     this.http
       .post("http://122.155.84.131/doe/doefilealien/selectcheckinformmobile", {
         apikey: "ebefb44c35628c26848b6d71993994470fa24cff",
@@ -67,8 +74,10 @@ export class HomePage {
       .subscribe(
         data => {
           this.data = data;
+          this.onLoading = false;
         },
         error => {
+          this.onLoading = false;
           console.log(error);
         }
       );

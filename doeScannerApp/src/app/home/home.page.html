@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="isScanned && !onLoading">
     <ion-list-header>
       ข้อมูลการแจ้งการทำงานของคนต่างด้าว
     </ion-list-header>
@@ -67,7 +67,42 @@
         <p>{{laborStatus[data.aliCancel]}}</p>
       </ion-label>
     </ion-item>
+  </ion-list>
 
+  <ion-list *ngIf="onLoading">
+    <ion-list-header>
+      <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>
 
